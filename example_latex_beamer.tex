@@ -1,0 +1,193 @@
+\documentclass[t]{beamer}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Set style of lstlisting
+\usepackage{listings, lstautogobble}
+\usepackage{xcolor}  % Syntax highlighting
+\usepackage{upquote} % Straight quotes
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{white},
+    commentstyle=\color{gray},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{gray},
+    stringstyle=\color{codegreen},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    columns=flexible,
+    % left-align code i.e. remove outer-most indentation:
+    autogobble=true,
+    % Note: Uncomment to frame the listing:
+    %frame=single,
+    % Note: Uncomment to (roughly) align line numbers with left text border:
+    %numbersep=1em,
+    %xleftmargin=1em
+}
+\lstset{style=mystyle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theme
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme{default}
+\usecolortheme{dove}
+\setbeamerfont{frametitle}{size=\huge}
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{footline}{bg=white, fg=gray}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[ball unnumbered]
+% Note: uncomment to center titles:
+%\setbeamertemplate{frametitle}{%
+%    \centering
+%    \insertframetitle
+%    \par
+%}
+
+% Highlight current (sub-)section in outline at start of new (sub-)section
+\AtBeginSection[]{
+    \begin{frame}
+        \frametitle{Outline}
+        \tableofcontents[currentsection, subsectionstyle=shaded]
+    \end{frame}
+}
+\AtBeginSubsection[]{
+    \begin{frame}
+        \frametitle{Outline}
+        \tableofcontents[currentsection, currentsubsection]
+    \end{frame}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title page
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{title page}{%
+  \begin{centering}
+    \vspace{2cm}
+    {\inserttitle\par}
+    \vspace{0.5cm}
+    {\insertsubtitle\par}
+    \vspace{2cm}
+    {\insertauthor\par}
+    \vspace{0.5cm}
+    {\insertdate\par}
+  \end{centering}
+}
+
+\title{\Huge{%
+    The Presentiation
+}}
+\subtitle{\Large{%
+    The Subtitle
+}}
+\author{\small{%
+    The Author | The Institution or Occasion
+}}
+\date{\small{%
+    \today
+}}
+
+\begin{document}
+% Define colors for highlighting and fading
+\definecolor{highlight}{rgb}{0.2, 0.6, 0.8}
+\definecolor{faded}{gray}{0.6}
+
+% Customize the item colors in the table of contents
+\newcommand{\highlightitem}[1]{
+  \only<\currentsection>{\textcolor{highlight}{#1}}
+  \only<\notcurrentsection>{\textcolor{faded}{#1}}
+}
+% Title and Outline
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+    \frametitle{Outline}
+    \tableofcontents % [pausesections]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: Your content comes here ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Some Section}
+\begin{frame}
+    \frametitle{Introduction}
+    This is some text with \textbf{bold} and \textit{italic} words\footnote{This is a footnote.}.\\
+    \pause
+    Here comes a formula:
+    \[
+        \int_0^\infty foo
+    \]
+    \pause
+    \begin{itemize}
+        \item Here comes an item
+            \begin{itemize}
+                \item And a subitem
+                    \begin{itemize}
+                        \item And a subsubitem
+                    \end{itemize}
+            \end{itemize}
+        \pause
+        \item Here comes another item
+            \begin{enumerate}
+                \item With numbered
+                    \pause
+                \item Items
+                    \pause
+                \item That appear incrementally
+            \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+\section{Some Other Section}
+\begin{frame}[fragile]
+    \frametitle{Here Is Some Code}
+
+    To make code listings work, mark the frame as \verb$fragile$.
+    \begin{lstlisting}[language=python]
+        def foo(a, b, c):
+            # printing a, b, c
+            print(f'a={a}, b={b}, c={c}')
+    \end{lstlisting}
+\end{frame}
+
+\subsection{Some Subsection}
+\begin{frame}[fragile]
+    \frametitle{Example: C Code}
+
+    \begin{lstlisting}[language=c]
+        int main(int argc, char **argv) {
+            for (int i = 1; i < argc; i++)
+                printf ("argument %u: %s\n", i, argv[i]);
+            return 0;
+        }
+    \end{lstlisting}
+\end{frame}
+
+\subsection{Some Other Subsection}
+\begin{frame}[fragile]
+    \frametitle{Example: C Code ... Again ...}
+
+    \begin{lstlisting}[language=c]
+        int main(int argc, char **argv) {
+            for (int i = 1; i < argc; i++)
+                printf ("argument %u: %s\n", i, argv[i]);
+            return 0;
+        }
+    \end{lstlisting}
+\end{frame}
+\end{document}
+
