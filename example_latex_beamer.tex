@@ -3,13 +3,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Packages
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Set style of lstlisting
-\usepackage{listings, lstautogobble}
-\usepackage{xcolor}  % Syntax highlighting
-\usepackage{upquote} % Straight quotes
+\usepackage[american]{babel}
+\usepackage{%
+    microtype,
+    listings, lstautogobble, % code snippets
+    xcolor, % syntax highlighting
+    upquote, % straight quotes
+    %hyperref, cleveref,
+    %caption, subcaption,
+    %amsmath, amssymb, mathtools,
+    %graphicx, wrapfig,
+    xurl % better line breaks in long URLs
+}
+\graphicspath{ {./figures/} }
+
 \definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{light-bg}{rgb}{0.98,0.98,0.95}
 \lstdefinestyle{mystyle}{
-    backgroundcolor=\color{white},
+    backgroundcolor=\color{light-bg},
     commentstyle=\color{gray},
     keywordstyle=\color{blue},
     numberstyle=\tiny\color{gray},
@@ -19,8 +30,7 @@
     breaklines=true,
     captionpos=b,
     keepspaces=true,
-    numbers=left,
-    numbersep=5pt,
+    %numbers=left, numbersep=5pt,
     showspaces=false,
     showstringspaces=false,
     showtabs=false,
@@ -28,9 +38,9 @@
     columns=flexible,
     % left-align code i.e. remove outer-most indentation:
     autogobble=true,
-    % Note: Uncomment to frame the listing:
-    %frame=single,
-    % Note: Uncomment to (roughly) align line numbers with left text border:
+    % Uncomment to frame the listing:
+    frame=single,
+    % Uncomment to (roughly) align line numbers with left text border:
     %numbersep=1em,
     %xleftmargin=1em
 }
@@ -39,23 +49,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theme
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usetheme{default}
+\usetheme{metropolis}
 \usecolortheme{dove}
-\setbeamerfont{frametitle}{size=\huge}
+\setbeamerfont{frametitle}{size=\Large}
 \setbeamertemplate{navigation symbols}{}
+
+% Footline
 \setbeamercolor{footline}{bg=white, fg=gray}
 \setbeamertemplate{footline}[frame number]
+
+% Itemize
 \setbeamertemplate{itemize item}[circle]
 \setbeamertemplate{itemize subitem}[circle]
 \setbeamertemplate{itemize subsubitem}[circle]
+
+% TOC
 \setbeamertemplate{section in toc}[sections numbered]
-\setbeamertemplate{subsection in toc}[ball unnumbered]
-% Note: uncomment to center titles:
-%\setbeamertemplate{frametitle}{%
-%    \centering
-%    \insertframetitle
-%    \par
-%}
+\setbeamertemplate{subsection in toc}{%
+  \leavevmode\hspace{2em}%
+  \textcolor{black}{$\bullet$}\hspace{0.5em}%
+  \inserttocsubsection\par%
+}
+
+% Font
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usefonttheme{professionalfonts}
+\usepackage{lmodern}
 
 % Highlight current (sub-)section in outline at start of new (sub-)section
 \AtBeginSection[]{
@@ -70,6 +90,7 @@
         \tableofcontents[currentsection, currentsubsection]
     \end{frame}
 }
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Title page
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -87,7 +108,7 @@
 }
 
 \title{\Huge{%
-    The Presentiation
+    The Presentation
 }}
 \subtitle{\Large{%
     The Subtitle
@@ -135,9 +156,10 @@
     \begin{itemize}
         \item Here comes an item
             \begin{itemize}
-                \item And a subitem
+                \item And a subitem. Some long URL:
+                    \url{https://tex.stackexchange.com/questions/11168/change-bullet-style-formatting-in-beamer}
                     \begin{itemize}
-                        \item And a subsubitem
+                        \item And a subsubitem. Some hy-phe-nation -- okay.
                     \end{itemize}
             \end{itemize}
         \pause
@@ -146,8 +168,6 @@
                 \item With numbered
                     \pause
                 \item Items
-                    \pause
-                \item That appear incrementally
             \end{enumerate}
     \end{itemize}
 \end{frame}
@@ -190,4 +210,3 @@
     \end{lstlisting}
 \end{frame}
 \end{document}
-
